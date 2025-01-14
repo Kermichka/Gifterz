@@ -1,0 +1,12 @@
+<form method="POST">
+    {{ form.hidden_tag() }}
+    <div>
+        {{ form.name.label }}: {{ form.name(size=30) }}
+    </div>
+    <div>
+        {{ form.price.label }}: {{ form.price(step="0.01") }}
+    </div>
+    <div>
+        {{ form.submit() }}
+    </div>
+</form>
