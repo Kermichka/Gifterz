@@ -1,6 +1,8 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import UserMixin
+from decimal import Decimal
+from sqlalchemy import Numeric
 
 
 class User(db.Model, UserMixin):
@@ -28,20 +30,23 @@ class User(db.Model, UserMixin):
         return True
 
 
+# TODO: Rename to Wishlist
 class List(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     title = db.Column(db.String(150), nullable=False)
 
 
+# TODO: Rename to Gift
 class Present(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150), nullable=False)
-    price = db.Column(db.Float, nullable=False)
+    price = db.Column(Numeric(10, 2), nullable=False)
     list_id = db.Column(db.Integer, db.ForeignKey("list.id"), nullable=False)
     group_id = db.Column(db.Integer, db.ForeignKey("group.id"))
 
 
+# TODO: Rename to ReservingGroup
 class Group(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     present_id = db.Column(db.Integer, db.ForeignKey("present.id"), nullable=False)
@@ -51,10 +56,13 @@ class Group(db.Model):
 class Buyer(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"), primary_key=True)
     group_id = db.Column(db.Integer, db.ForeignKey("group.id"), primary_key=True)
-    contribution_amount = db.Column(db.Float, nullable=False)
+    contribution_amount = db.Column(Numeric(10, 2), nullable=False)
 
 
+# TODO: Rename to ?UserFriendship
 class Connection(db.Model):
+    # TODO: Rename to from_user_id, to_user_id
     user_id_1 = db.Column(db.Integer, db.ForeignKey("user.id"), primary_key=True)
     user_id_2 = db.Column(db.Integer, db.ForeignKey("user.id"), primary_key=True)
     connection_type = db.Column(db.String(50), nullable=False)
+    # TODO: add a field is_active that indicates whether to_user_id accepted the invitation

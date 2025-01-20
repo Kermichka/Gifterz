@@ -1,58 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ user.name }}'s Profile</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-    <header>
-        <h1>Welcome, {{ user.name }}!</h1>
-        <p>Email: {{ user.email }}</p>
-        <a href="{{ url_for('auth.logout') }}">Logout</a>
-    </header>
+{% extends "base.html" %}
 
-    <div class="profile-container">
-        <div class="profile-sidebar">
-            <h3>Friends</h3>
-            <ul>
-                {% for friend in user.friends %}
-                    <li>
-                        <a href="{{ url_for('profile', user_id=friend.id) }}">{{ friend.name }}</a>
-                    </li>
-                {% else %}
-                    <li>No friends connected yet.</li>
-                {% endfor %}
-            </ul>
-            <form action="{{ url_for('search_users') }}" method="GET">
-                <input type="text" name="query" placeholder="Search for a user" required>
-                <button type="submit">Search</button>
-            </form>
-        </div>
+{% block title %}{{ user.name }}'s Profile{% endblock %}
 
-        <div class="profile-main">
-            <h2>Your Wishlist</h2>
-            {% if user.lists %}
-                <ul>
-                    {% for list in user.lists %}
-                        <li>
-                            <h3>{{ list.title }}</h3>
-                            <ul>
-                                {% for gift in list.presents %}
-                                {% endfor %}
-                            </ul>
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <p>You have no wishlists. <a href="{{ url_for('wishlist.create') }}">Create one now!</a></p>
-            {% endif %}
-        </div>
-    </div>
+{% block content %}
+<h2 class="profile-header">{{ user.name }}'s Profile</h2>
 
-    <footer>
-        <p>&copy; 2025 Gifterz. All Rights Reserved.</p>
-    </footer>
-</body>
-</html>
+<div class="profile-actions">
+    <a href="{{ url_for('main.create_wishlist') }}"
+        class="btn btn-primary">Create New Wishlist</a>
+</div>
+
+<div class="wishlists-section">
+    <h3>My Wishlists</h3>
+    {% if user_wishlists %}
+    <ul class="wishlist-list">
+        {% for wishlist in user_wishlists %}
+        <li class="wishlist-item">
+            <a
+                href="{{ url_for('main.view_wishlist_details', list_id=wishlist.id) }}">
+                {{ wishlist.title }}
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p class="no-wishlist-message">You don't have any wishlists yet.</p>
+    {% endif %}
+</div>
+<div class="groups-section">
+    <h3>My Groups</h3>
+    {% if user_groups %}
+    <ul class="group-list">
+        {% for group, present, wishlist, receiver in user_groups %}
+        <li class="group-item">
+            <span class="group-name">{{ group.name }}</span> -
+            <span class="present-name">{{ present.name }}</span> -
+            <span class="present-price">${{ "%.2f"|format(present.price)
+                }}</span> -
+            <span class="wishlist-title">Wishlist: {{ wishlist.title
+                }}</span> -
+            <span class="receiver">Receiver: {{ receiver.name }}</span>
+        </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p class="no-group-message">You are not a member of any groups.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

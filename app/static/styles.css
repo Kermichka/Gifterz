@@ -1,0 +1,228 @@
+/* Global Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+/* Profile Container */
+.main-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+}
+
+/* Header */
+.profile-header {
+    text-align: center;
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Action Button */
+.profile-actions {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-actions .btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.profile-actions .btn:hover {
+    background-color: #0056b3;
+}
+
+/* Sections */
+.wishlists-section, .groups-section {
+    margin-bottom: 40px;
+}
+
+h3 {
+    color: #333;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+/* Wishlist List */
+.wishlist-list, .group-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.wishlist-item, .group-item {
+    background-color: #f8f9fa;
+    padding: 12px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    font-size: 18px;
+}
+
+.wishlist-item a, .group-item {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.wishlist-item a:hover {
+    text-decoration: underline;
+}
+
+/* No Wishlists/No Groups Message */
+.no-wishlist-message, .no-group-message {
+    font-size: 16px;
+    color: #555;
+    text-align: center;
+}
+
+/* Group Item Layout */
+.group-name {
+    font-weight: bold;
+}
+
+.present-name {
+    font-style: italic;
+}
+
+.present-price {
+    color: #28a745;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #007bff;
+    padding: 15px 30px;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-left .navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+.navbar-left .navbar-brand:hover {
+    text-decoration: underline;
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-link {
+    margin-right: 20px;
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.navbar-link:hover {
+    color: #f1f1f1;
+}
+
+.navbar-search {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.search-input {
+    padding: 8px 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    margin-right: 8px;
+}
+
+.search-btn {
+    padding: 8px 12px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.search-btn:hover {
+    background-color: #218838;
+}
+
+.logout-form {
+    margin-left: 20px;
+}
+
+.logout-btn {
+    background-color: #dc3545;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #c82333;
+}
+
+/* Main Content Styles */
+main {
+    padding: 20px;
+    margin-top: 60px;
+}
+
+/* Footer Styles */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+form label,
+form input,
+form > div {
+    margin: 10px;
+}
+
+.double-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:20px;
+}
+
+.double-box .form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+}

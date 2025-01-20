@@ -1,64 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gifterz - Landing Page</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-    <div class="container">
-        <h1>Welcome to Gifterz!</h1>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Gifterz - Landing Page</title>
+        <link rel="stylesheet"
+            href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+    <body>
+        <header>
+            <nav class="navbar">
+                <div class="navbar-left">
+                    <a href="#"
+                        class="navbar-brand">Gifterz</a>
+                </div>
+            </nav>
+        </header>
 
-        {% with messages = get_flashed_messages(with_categories=true) %}
-            {% if messages %}
+        <div class="container">
+            <div class="main-container">
+                <h1>Welcome to Gifterz!</h1>
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
                 <ul class="flashes">
-                {% for category, message in messages %}
+                    {% for category, message in messages %}
                     <li class="{{ category }}">{{ message }}</li>
-                {% endfor %}
+                    {% endfor %}
                 </ul>
-            {% endif %}
-        {% endwith %}
+                {% endif %}
+                {% endwith %}
 
-        <div class="form-container">
-            <h2>Login</h2>
-            <form method="POST" action="/">
-                {{ login_form.hidden_tag() }}
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    {{ login_form.email(class="form-control") }}
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    {{ login_form.password(class="form-control") }}
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Login</button>
-                </div>
-            </form>
-        </div>
+                <div class="double-box">
+                    <div class="form-container">
+                        <h2>Login</h2>
+                        <form method="POST" action="/">
+                            {{ login_form.hidden_tag() }}
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                {{ login_form.email(class="form-control") }}
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                {{ login_form.password(class="form-control") }}
+                            </div>
+                            <div class="form-group">
+                                <button type="submit"
+                                    class="btn btn-primary">Login</button>
+                            </div>
+                        </form>
+                    </div>
 
-        <div class="form-container">
-            <h2>Register</h2>
-            <form method="POST" action="/">
-                {{ register_form.hidden_tag() }}
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    {{ register_form.name(class="form-control") }}
+                    <div class="form-container">
+                        <h2>Register</h2>
+                        <form method="POST" action="/">
+                            {{ register_form.hidden_tag() }}
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                {{ register_form.name(class="form-control") }}
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                {{ register_form.email(class="form-control") }}
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                {{ register_form.password(class="form-control")
+                                }}
+                            </div>
+                            <div class="form-group">
+                                <button type="submit"
+                                    class="btn btn-success">Register</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    {{ register_form.email(class="form-control") }}
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    {{ register_form.password(class="form-control") }}
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-success">Register</button>
-                </div>
-            </form>
+            </div>
         </div>
-    </div>
-</body>
+    </body>
 </html>

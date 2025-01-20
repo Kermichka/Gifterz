@@ -1,12 +1,27 @@
-<form method="POST">
+{% extends "base.html" %}
+
+{% block title %}Add Gift{% endblock %}
+
+{% block content %}
+<h1>Add a Gift to Wishlist: {{ wishlist.title }}</h1>
+
+<form method="POST"
+    action="{{ url_for('main.add_gift', list_id=wishlist.id) }}">
     {{ form.hidden_tag() }}
     <div>
-        {{ form.name.label }}: {{ form.name(size=30) }}
+        {{ form.name.label }}
+        {{ form.name(size=30) }}
     </div>
     <div>
-        {{ form.price.label }}: {{ form.price(step="0.01") }}
+        {{ form.price.label }}
+        {{ form.price() }}
     </div>
     <div>
         {{ form.submit() }}
     </div>
 </form>
+
+<a href="{{ url_for('main.view_wishlist_details', list_id=wishlist.id) }}">
+    Back to Wishlist
+</a>
+{% endblock %}

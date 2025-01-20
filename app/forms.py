@@ -22,7 +22,7 @@ class WishlistForm(FlaskForm):
 
 class GiftForm(FlaskForm):
     name = StringField("Gift Name", validators=[DataRequired()])
-    price = DecimalField("Gift Price", validators=[DataRequired(), NumberRange(min=0)])
+    price = DecimalField("Price", validators=[DataRequired()])
     submit = SubmitField("Add Gift")
 
 
@@ -31,3 +31,7 @@ class ContributionForm(FlaskForm):
         "Contribution Amount", validators=[DataRequired(), NumberRange(min=0.01)]
     )
     submit = SubmitField("Contribute")
+
+
+class ReserveForm(FlaskForm):
+    submit = SubmitField("Reserve")
