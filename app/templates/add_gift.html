@@ -6,7 +6,7 @@
 <h1>Add a Gift to Wishlist: {{ wishlist.title }}</h1>
 
 <form method="POST"
-    action="{{ url_for('main.add_gift', list_id=wishlist.id) }}">
+    action="{{ url_for('main.create_wishlist_gift', list_id=wishlist.id) }}">
     {{ form.hidden_tag() }}
     <div>
         {{ form.name.label }}
@@ -21,7 +21,4 @@
     </div>
 </form>
 
-<a href="{{ url_for('main.view_wishlist_details', list_id=wishlist.id) }}">
-    Back to Wishlist
-</a>
 {% endblock %}

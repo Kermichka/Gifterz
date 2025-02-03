@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Wishlist Details{% endblock %}
+
+{% block content %}
+<h3>Present List</h3>
+<ul>
+    {% for present in presents %}
+    <li>
+        {{ present.name }} - ${{ "%.2f"|format(present.price) }}
+
+        {% if present.group_id %}
+        <span>This present has already been reserved.</span>
+        {% else %}
+        <form method="POST"
+            action="{{ url_for('main.reserve_present', present_id=present.id) }}">
+            <button type="submit">Reserve</button>
+        </form>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

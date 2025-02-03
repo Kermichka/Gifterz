@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}Gifterz{% endblock %}</title>
+        <link rel="stylesheet"
+            href="{{ url_for('static', filename='styles.css') }}">
+    </head>
+    <body>
+        <header>
+            <nav class="navbar">
+                <div class="navbar-left">
+                    <a href="{{ url_for('main.profile') }}"
+                        class="navbar-brand">Gifterz</a>
+                </div>
+                <div class="navbar-links">
+                    <a href="{{ url_for('main.profile') }}"
+                        class="navbar-link">Profile</a>
+                    <form action="{{ url_for('main.search_users') }}"
+                        method="GET" class="navbar-search">
+                        <input type="text" name="query"
+                            placeholder="Search for users" required
+                            class="search-input">
+                        <button type="submit" class="search-btn">Search</button>
+                    </form>
+                    <form action="{{ url_for('main.logout') }}" method="POST"
+                        class="logout-form">
+                        <button type="submit"
+                            class="btn btn-danger logout-btn">Logout</button>
+                    </form>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <div class="main-container">
+                {% block content %}{% endblock %}
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 Gifterz.</p>
+        </footer>
+    </body>
+</html>

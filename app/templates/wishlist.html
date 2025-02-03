@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}{{ wishlist.title }}{% endblock %}
+
+{% block content %}
+<h1>{{ wishlist.title }}</h1>
+
+<h3>Gifts</h3>
+{% if gifts %}
+<ul>
+    {% for present, group in gifts %}
+    <li>
+        {{ present.name }} - ${{ present.price }}
+        {% if group %}
+        <br><em>Reserved.</em>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No gifts added yet.</p>
+{% endif %}
+
+<h3>Add a New Gift</h3>
+<form method="POST"
+    action="{{ url_for('main.create_wishlist_gift', list_id=wishlist.id) }}">
+    {{ form.hidden_tag() }}
+    <div>
+        <label for="name">Gift Name:</label>
+        {{ form.name(size=30) }}
+    </div>
+
+    <div>
+        <label for="price">Gift Price:</label>
+        {{ form.price(size=30) }}
+    </div>
+
+    <div>
+        {{ form.submit() }}
+    </div>
+</form>
+
+{% endblock %}

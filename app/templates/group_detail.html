@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Add a Group{% endblock %}
+
+{% block content %}
+<h1>Group: {{ group.name }}</h1>
+<h2>Present: {{ present.name }}</h2>
+
+{% if reserved_by_user %}
+<p>This present has been reserved by {{ reserved_by_user.name }}.</p>
+{% else %}
+<p>This present is still available.</p>
+{% endif %}
+
+<h3>Group Members:</h3>
+<ul>
+    {% for member in group_members %}
+    <li>{{ member.user.name }}</li>
+    {% endfor %}
+</ul>
+
+<form method="POST"
+    action="{{ url_for('main.join_group', group_id=group.id) }}">
+    <button type="submit">Join Group and Reserve Present</button>
+</form>
+{% endblock %}
